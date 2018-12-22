@@ -1,6 +1,6 @@
 # Mongo安装&配置
 
-## Shard
+## Sharding
 
 ### 准备目录
 
