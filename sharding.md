@@ -40,7 +40,7 @@ chmod 600 /data/sharding/keyfile/mongo.key
 
 ### 创建配置文件
 
-#### mongod
+#### mongod.conf
 
 ```shell
 vim /data/sharding/conf/mongod.conf
@@ -75,7 +75,7 @@ security:
   authorization: enabled
 ```
 
-#### mongos
+#### mongos.conf
 
 ```shell
 vim /data/sharding/conf/mongos.conf
