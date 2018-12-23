@@ -8,7 +8,6 @@
 mkdir -p /data/sharding/configReplSet/21001/data
 mkdir -p /data/sharding/configReplSet/21002/data
 mkdir -p /data/sharding/configReplSet/21003/data
-mkdir -p /data/sharding/configReplSet/21004/data
 
 mkdir -p /data/sharding/shardReplSet1/22001/data
 mkdir -p /data/sharding/shardReplSet1/22002/data
@@ -115,7 +114,6 @@ $MONGOD --port 21002 --configsvr --replSet configReplSet --keyFile $KEYFILE --db
 
 $MONGOD --port 21003 --configsvr --replSet configReplSet --keyFile $KEYFILE --dbpath $WORK_DIR/configReplSet/21003/data --pidfilepath $WORK_DIR/configReplSet/21003/db.pid --logpath $WORK_DIR/configReplSet/21003/db.log --config $CONFFILE
 
-$MONGOD --port 21004 --configsvr --replSet configReplSet --keyFile $KEYFILE --dbpath $WORK_DIR/configReplSet/21004/data --pidfilepath $WORK_DIR/configReplSet/21004/db.pid --logpath $WORK_DIR/configReplSet/21004/db.log --config $CONFFILE
 ```
 
 #### 配置config副本集
@@ -158,8 +156,6 @@ db.auth('admin', 'admin')
 rs.add('192.168.31.20:21002')
 rs.add('192.168.31.20:21003')
 
-# 添加Arbiter
-rs.addArb('192.168.31.20:21004')
 ```
 
 ### 创建shard1副本集
@@ -331,8 +327,8 @@ use mydb
 sh.enableSharding("mydb")
 
 db.createCollection('books')
-db.books.ensureIndex({createTime:1})
-sh.shardCollection('mydb.books', { bookId: 'hashed' }, false, { numInitialChunks: 4} )
+db.books.createIndex({createTime:1})
+sh.shardCollection('mydb.books', { bookId: 'hashed' }, false, { numInitialChunks: 4 })
 
 ```
 
