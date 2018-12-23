@@ -168,6 +168,7 @@ db.createUser(
 
 ### 清理
 
+ps -ef | grep mongo | grep -v grep | awk '{print $2}' | xargs kill
 rm -rf /data/replication/data/27017/*
 rm -rf /data/replication/data/27018/*
 rm -rf /data/replication/data/27019/*
