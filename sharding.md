@@ -42,12 +42,7 @@ chmod 600 /data/sharding/keyfile/mongo.key
 #### mongod.conf
 
 ```shell
-vim /data/sharding/conf/mongod.conf
-```
-
-添加如下内容
-
-```yml
+cat <<EOF > /data/sharding/conf/mongod.conf
 storage:
   engine: wiredTiger
   directoryPerDB: true
@@ -72,17 +67,13 @@ net:
 
 security:
   authorization: enabled
+EOF
 ```
 
 #### mongos.conf
 
 ```shell
-vim /data/sharding/conf/mongos.conf
-```
-
-添加如下内容
-
-```yml
+cat <<EOF > /data/sharding/conf/mongos.conf
 systemLog:
   destination: file
   logAppend: true
@@ -92,11 +83,10 @@ processManagement:
 
 net:
   bindIpAll: true
+EOF
 ```
 
 详细配置可参考 [Configuration File Options](https://docs.mongodb.com/manual/reference/configuration-options/index.html)
-
-
 
 ### 创建config副本集
 
